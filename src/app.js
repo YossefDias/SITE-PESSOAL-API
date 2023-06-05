@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const { initDatabase } = require('./config/db');
+const cors = require('cors');
 
 const experienciasRoute = require('./routes/experienciasRoute');
 const portfolioRoute = require('./routes/portfolioRoute');
@@ -15,6 +16,8 @@ app.get('/', (req, res) => {
     res.send('Seja bem-vindo à API do Meu Site Pessoal!');
 
 });
+
+app.use(cors());
 
 app.use(express.json());
 
