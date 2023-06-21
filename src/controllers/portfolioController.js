@@ -1,33 +1,36 @@
-const portfolioRepository = require('../repositories/portfolioRepository');
+const portfolioRepository = require("../repositories/portfolioRepository");
 
-exports.getPortfolio = async () => {
-    return await portfolioRepository.getPortfolio();
+exports.getPortfolio = async (req, res) => {   
+    const portfolio = await portfolioRepository.getPortfolio(); 
     res.json(portfolio);
-}
 
-exports.getProjetoById = async (req, res) => {
+ };
+
+ exports.getPortfolioById = async (req, res) => {   
     const id = parseInt(req.params.id);
-    const projeto = await portfolioRepository.getProjetoById(id);
-    res.json(projeto);    
-}
+    const portfolio = await portfolioRepository.getPortfolioById(id); 
+    res.json(portfolio);
 
-exports.createProjeto = async (req, res) => {
-    const projeto = req.body;
-    const newProjeto = await portfolioRepository.createProjeto(projeto);
-    res.json(newProjeto);    
-}
+ };
 
-exports.updateProjeto = async (req, res) => {
-    const id = parseInt(req.params.id);
-    const projeto = req.body;
-    const updatedProjeto = await portfolioRepository.updateProjeto(id, projeto);
-    res.json(updatedProjeto);
-}
+ exports.createPortfolio = async (req, res) => {   
+   const portfolio = req.body;
+   const newPortfolio = await portfolioRepository.createPortfolio(portfolio); 
+   res.json(newPortfolio);
 
-exports.deleteProjeto = async (req, res) => {
-    const id = parseInt(req.params.id);
-    await portfolioRepository.deleteProjeto(id);
-    res.json({ message: `Projeto ${id} deleted`});
-    
-}
+};
 
+exports.updatePortfolio = async (req, res) => {   
+   const id = parseInt(req.params.id)
+   const portfolio = req.body;
+   const updatePortfolio = await portfolioRepository.updatePortfolio(id, portfolio); 
+   res.json(updatePortfolio);
+
+};
+
+exports.deletePortfolio = async (req, res) => {   
+   const id = parseInt(req.params.id)
+   await portfolioRepository.deletePortfolio(id); 
+   res.json({message: `Portfolio ${id} deleted`});
+
+};
